@@ -58,6 +58,8 @@ var createTaskEl = function(taskDataObj) {
 
 saveTasks ();
 
+
+
   taskDataObj.id = taskIdCounter;
 
   // increase task counter for next unique id
@@ -218,6 +220,27 @@ var deleteTask = function(taskId) {
 var saveTasks = function () {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+var loadTasks = function () {
+  var savedTasks = localStorage.getItem("tasks");
+
+if (!savedTasks) {
+
+  return false;
+}
+
+  savedTasks = JSON.parse(tasks);
+}
+  //loop through savedTasks array
+ for (var i = 0; i < savedTasks.length; i++) {
+   //pass each task object into the 'createTaskEl() function
+ 
+ createTaskEl(savedTasks[i]);
+ }
+
+
+loadTasks()
+
 // Create a new task
 formEl.addEventListener("submit", taskFormHandler);
 
